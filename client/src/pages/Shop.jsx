@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useTranslation } from 'react-i18next';
-import { Search, Filter, ArrowDownWideIcon } from 'lucide-react';
+import { Search, Filter } from 'lucide-react';
 import BookCard from '../components/BookCard';
 
 const Shop = () => {
@@ -75,7 +75,8 @@ const Shop = () => {
           )}
           {!loading && books.length === 0 && (
             <div className="col-span-full row-span-full py-32 text-center text-gray-400 font-display font-bold text-3xl uppercase bg-gradient-to-r from-transparent via-white/80 to-transparent rounded-3xl p-20 backdrop-blur-sm shadow-inner">
-              <BookOpen className="w-32 h-32 mx-auto text-gray-300 mb-8 animate-spin-slow" />
+              لا توجد كتب
+
               No books found. Upload some via <Link to="/admin" className="text-primary hover:underline font-black">Admin Panel</Link>
             </div>
           )}

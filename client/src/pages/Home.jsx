@@ -1,98 +1,64 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { useTranslation } from 'react-i18next';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, BookOpen, Star, Zap } from 'lucide-react';
-import BookCard from '../components/BookCard';
+import { ArrowRight } from 'lucide-react';
 
 const Home = () => {
-  const { t, i18n } = useTranslation();
-  const [featuredBooks, setFeaturedBooks] = useState([]);
-
-  useEffect(() => {
-    axios.get('http://localhost:5000/api/books?limit=4')
-      .then(res => setFeaturedBooks(res.data))
-      .catch(err => console.error(err));
-  }, []);
-
   return (
-    <div className="space-y-32 mb-32">
-  {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center text-center px-4 overflow-hidden bg-gradient-to-b from-white via-white/90 to-gold-50">
-        <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gold-500/5 via-transparent to-transparent"></div>
-          <div className="absolute inset-0 z-10 opacity-20">
-            <h1 className="text-[35vw] font-display font-black text-gold-200 absolute inset-0 pointer-events-none rotate-12 scale-110">ATHAR</h1>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-white">
+      <nav className="fixed w-full bg-white/80 backdrop-blur-md z-50 border-b border-gray-100 top-0">
+        <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
+          <h1 className="text-3xl font-black bg-gradient-to-r from-black to-gray-800 bg-clip-text text-transparent">أثر</h1>
+          <div className="space-x-6">
+            <Link to="/" className="text-lg font-bold hover:text-amber-500">Home</Link>
+            <Link to="/shop" className="text-lg font-bold hover:text-amber-500">Shop</Link>
+            <Link to="/about" className="text-lg font-bold hover:text-amber-500">About</Link>
           </div>
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gold-500/10 rounded-full blur-3xl animate-pulse-glow"></div>
-          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float"></div>
         </div>
-        <div className="relative z-20 max-w-5xl mx-auto space-y-12 animate-fade-in" style={{animationDelay: '0.3s'}}>
-          <div className="space-y-4">
-            <span className="inline-block px-6 py-2 bg-gradient-to-r from-gold-500 to-primary text-black font-black text-sm uppercase tracking-wider rounded-full shadow-lg animate-float" style={{animationDelay: '0.5s'}}>Digital Publishing Excellence</span>
-            <h1 className="text-7xl md:text-[10rem] lg:text-[12rem] xl:text-[14rem] font-display font-black tracking-[-0.1em] bg-gradient-to-r from-black via-gray-900 to-black bg-clip-text text-transparent leading-none">
-              أثر
-            </h1>
-            <p className="font-display text-3xl md:text-4xl text-gray-600 max-w-3xl mx-auto leading-relaxed opacity-90">
-              {t('slogan')}
-            </p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
-            <Link to="/shop" className="group px-12 py-7 bg-gradient-to-r from-black to-gray-900 text-white font-display font-black text-xl rounded-3xl shadow-2xl hover:shadow-gold/50 hover:shadow-2xl hover:from-gold-500 hover:to-primary hover:-translate-y-2 transition-all duration-500 flex items-center gap-4 uppercase tracking-wider">
-              <span>{t('hero.cta')}</span>
-              <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform rtl:rotate-180" />
+      </nav>
+      <main className="pt-20">
+        <section className="h-screen flex flex-col items-center justify-center text-center px-6 max-w-4xl mx-auto">
+          <h1 className="text-7xl md:text-8xl lg:text-9xl font-black mb-8 bg-gradient-to-r from-black via-gray-900 to-amber-600 bg-clip-text text-transparent animate-fade-in">
+            أثر ATHAR
+          </h1>
+          <p className="text-2xl md:text-3xl text-gray-600 mb-12 max-w-2xl leading-relaxed animate-fade-in-up">
+            لأن المعرفة تترك أثرا
+          </p>
+          <div className="flex gap-6">
+            <Link to="/shop" className="px-12 py-6 bg-black text-white text-xl font-bold rounded-3xl hover:bg-gray-800 transition-all shadow-2xl hover:shadow-amber/25 hover:-translate-y-1">
+              تصفح الكتب <ArrowRight className="inline ml-2" />
             </Link>
-            <Link to="/about" className="font-black text-lg text-gray-500 hover:text-black transition-colors uppercase tracking-wider flex items-center gap-2 hover:gap-4">
-              {t('nav.about')} <ArrowRight className="w-5 h-5 transition-transform" />
+            <Link to="/about" className="px-12 py-6 border-2 border-black text-black text-xl font-bold rounded-3xl hover:bg-black hover:text-white transition-all">
+              من نحن
             </Link>
           </div>
-        </div>
-      </section>
-
-      {/* Benefits Section */}
-      <section className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-16">
-        <div className="text-center space-y-4">
-          <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mx-auto">
-            <BookOpen size={32} />
+        </section>
+        
+        <section className="py-32 bg-white">
+          <div className="max-w-7xl mx-auto px-6">
+            <h2 className="text-5xl font-black text-center mb-24 bg-gradient-to-r from-black to-gray-800 bg-clip-text text-transparent">
+              الكتب المميزة
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+              {[1,2,3,4,5,6].map((i) => (
+                <div key={i} className="group bg-white border border-gray-100 rounded-3xl p-8 hover:shadow-2xl hover:shadow-amber/25 hover:-translate-y-4 transition-all duration-500 hover:border-amber-300">
+                  <div className="w-full h-64 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl mb-6 animate-pulse group-hover:bg-gradient-to-br group-hover:from-amber-50 group-hover:to-white"></div>
+                  <h3 className="text-2xl font-bold mb-4 line-clamp-2">كتاب رقم {i}</h3>
+                  <p className="text-gray-600 mb-6 line-clamp-2">وصف مختصر للكتاب الرقمي الذي سيظهر محتواه هنا بعد تشغيل السيرفر الخلفي.</p>
+                  <div className="flex justify-between items-center">
+                    <span className="text-3xl font-black text-amber-600">$29</span>
+                    <Link to="/product/1" className="px-8 py-3 bg-black text-white font-bold rounded-2xl hover:bg-gray-800 transition-colors">
+                      اشتري الآن
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
           </div>
-          <h3 className="text-2xl font-bold">Diverse Library</h3>
-          <p className="text-gray-500">Access a wide range of exclusive digital content curated for modern thinkers.</p>
-        </div>
-        <div className="text-center space-y-4">
-          <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mx-auto">
-            <Zap size={32} />
-          </div>
-          <h3 className="text-2xl font-bold">Instant Delivery</h3>
-          <p className="text-gray-500">Your books are delivered directly to your inbox immediately after purchase.</p>
-        </div>
-        <div className="text-center space-y-4">
-          <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary mx-auto">
-            <Star size={32} />
-          </div>
-          <h3 className="text-2xl font-bold">Premium Quality</h3>
-          <p className="text-gray-500">Carefully selected high-quality publications that leave a lasting impact.</p>
-        </div>
-      </section>
-
-      {/* Featured Books */}
-      <section className="max-w-7xl mx-auto px-4 space-y-12">
-        <div className="flex justify-between items-end border-b border-gray-100 pb-8">
-          <h2 className="text-4xl font-black">{i18n.language === 'ar' ? 'الكتب المميزة' : 'Featured Books'}</h2>
-          <Link to="/shop" className="text-primary font-bold hover:underline flex items-center gap-2">
-            View All <ArrowRight size={20} className="rtl:rotate-180" />
-          </Link>
-        </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {featuredBooks.map(book => (
-            <BookCard key={book._id} book={book} />
-          ))}
-          {featuredBooks.length === 0 && [1, 2, 3, 4].map(i => (
-            <div key={i} className="animate-pulse bg-gray-50 aspect-[3/4] rounded-2xl" />
-          ))}
-        </div>
-      </section>
+        </section>
+      </main>
     </div>
   );
 };
 
 export default Home;
+

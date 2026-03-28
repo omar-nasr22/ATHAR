@@ -22,10 +22,10 @@ const Navbar = () => {
           </Link>
           
           <div className="hidden md:flex items-center space-x-8 rtl:space-x-reverse">
-            <Link to="/" className="text-sm font-medium hover:text-primary transition-colors">{t('nav.home')}</Link>
-            <Link to="/shop" className="text-sm font-medium hover:text-primary transition-colors">{t('nav.shop')}</Link>
-            <Link to="/about" className="text-sm font-medium hover:text-primary transition-colors">{t('nav.about')}</Link>
-            <Link to="/contact" className="text-sm font-medium hover:text-primary transition-colors">{t('nav.contact')}</Link>
+            <Link to="/" className="text-sm font-medium hover:text-amber-500 transition-colors">{t('nav.home')}</Link>
+            <Link to="/shop" className="text-sm font-medium hover:text-amber-500 transition-colors">{t('nav.shop')}</Link>
+            <Link to="/about" className="text-sm font-medium hover:text-amber-500 transition-colors">{t('nav.about')}</Link>
+            <Link to="/contact" className="text-sm font-medium hover:text-amber-500 transition-colors">{t('nav.contact')}</Link>
             <button onClick={toggleLanguage} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
               <Globe size={20} />
             </button>
@@ -64,21 +64,21 @@ const Footer = () => {
           <p className="text-gray-400 max-w-xs">{t('slogan')}</p>
         </div>
         <div className="flex flex-col gap-4">
-          <h3 className="font-bold text-primary mb-2">Company</h3>
+          <h3 className="font-bold text-amber-500 mb-2">Company</h3>
           <Link to="/about" className="text-gray-400 hover:text-white transition-colors">{t('nav.about')}</Link>
           <Link to="/contact" className="text-gray-400 hover:text-white transition-colors">{t('nav.contact')}</Link>
         </div>
         <div>
-          <h3 className="font-bold text-primary mb-2">Connect</h3>
+          <h3 className="font-bold text-amber-500 mb-2">Connect</h3>
           <p className="text-gray-400 mb-4">info@athar.ai</p>
           <div className="flex gap-4">
-            <a href="#" className="hover:text-primary">X (Twitter)</a>
-            <a href="#" className="hover:text-primary">Instagram</a>
+            <a href="#" className="hover:text-amber-500">X (Twitter)</a>
+            <a href="#" className="hover:text-amber-500">Instagram</a>
           </div>
         </div>
       </div>
       <div className="max-w-7xl mx-auto border-t border-gray-800 mt-16 pt-8 text-center text-gray-500 text-sm">
-        &copy; {new Date().getFullYear()} {t('brand')}. All rights reserved.
+        © {new Date().getFullYear()} {t('brand')}. All rights reserved.
       </div>
     </footer>
   );
@@ -100,3 +100,4 @@ export const Layout = ({ children }) => {
     </div>
   );
 };
+

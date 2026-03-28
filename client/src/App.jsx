@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { Layout } from './components/Layout';
+import { SimpleLayout } from './components/SimpleLayout';
+// import DummyHome from './pages/DummyHome';
 import Home from './pages/Home';
 import Shop from './pages/Shop';
 import ProductDetails from './pages/ProductDetails';
@@ -13,9 +14,9 @@ import './i18n';
 function App() {
   return (
     <Router>
-      <Layout>
+      <SimpleLayout>
         <Routes>
-          <Route path="/" element={<Home />} />
+<Route path="/" element={<Home />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/product/:id" element={<ProductDetails />} />
           <Route path="/about" element={<About />} />
@@ -23,9 +24,10 @@ function App() {
           <Route path="/admin" element={<AdminDashboard />} />
           <Route path="/admin/login" element={<AdminLogin />} />
         </Routes>
-      </Layout>
+      </SimpleLayout>
     </Router>
   );
 }
 
 export default App;
+
