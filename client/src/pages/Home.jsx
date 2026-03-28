@@ -17,22 +17,33 @@ const Home = () => {
 
   return (
     <div className="space-y-32 mb-32">
-      {/* Hero Section */}
-      <section className="relative h-[80vh] flex items-center justify-center text-center px-4 overflow-hidden bg-white">
-        <div className="absolute inset-0 z-0 flex items-center justify-center opacity-5 pointer-events-none scale-150 transform rotate-12">
-          <h1 className="text-[40vw] font-black">{t('brand')}</h1>
+  {/* Hero Section */}
+      <section className="relative h-screen flex items-center justify-center text-center px-4 overflow-hidden bg-gradient-to-b from-white via-white/90 to-gold-50">
+        <div className="absolute inset-0">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-gold-500/5 via-transparent to-transparent"></div>
+          <div className="absolute inset-0 z-10 opacity-20">
+            <h1 className="text-[35vw] font-display font-black text-gold-200 absolute inset-0 pointer-events-none rotate-12 scale-110">ATHAR</h1>
+          </div>
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-gold-500/10 rounded-full blur-3xl animate-pulse-glow"></div>
+          <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float"></div>
         </div>
-        <div className="z-10 max-w-4xl mx-auto space-y-8 animate-fade-in">
-          <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-black uppercase">
-            {t('hero.title')}
-          </h1>
-          <p className="text-xl md:text-2xl text-gray-500 font-medium max-w-2xl mx-auto leading-relaxed">
-            {t('slogan')}
-          </p>
-          <div className="flex justify-center gap-6">
-            <Link to="/shop" className="px-12 py-5 bg-black text-white text-lg font-bold rounded-2xl hover:bg-primary transition-all transform hover:-translate-y-1 shadow-lg flex items-center gap-3 group">
-              {t('hero.cta')}
-              <ArrowRight className="group-hover:translate-x-1 transition-transform rtl:rotate-180" size={24} />
+        <div className="relative z-20 max-w-5xl mx-auto space-y-12 animate-fade-in" style={{animationDelay: '0.3s'}}>
+          <div className="space-y-4">
+            <span className="inline-block px-6 py-2 bg-gradient-to-r from-gold-500 to-primary text-black font-black text-sm uppercase tracking-wider rounded-full shadow-lg animate-float" style={{animationDelay: '0.5s'}}>Digital Publishing Excellence</span>
+            <h1 className="text-7xl md:text-[10rem] lg:text-[12rem] xl:text-[14rem] font-display font-black tracking-[-0.1em] bg-gradient-to-r from-black via-gray-900 to-black bg-clip-text text-transparent leading-none">
+              أثر
+            </h1>
+            <p className="font-display text-3xl md:text-4xl text-gray-600 max-w-3xl mx-auto leading-relaxed opacity-90">
+              {t('slogan')}
+            </p>
+          </div>
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8">
+            <Link to="/shop" className="group px-12 py-7 bg-gradient-to-r from-black to-gray-900 text-white font-display font-black text-xl rounded-3xl shadow-2xl hover:shadow-gold/50 hover:shadow-2xl hover:from-gold-500 hover:to-primary hover:-translate-y-2 transition-all duration-500 flex items-center gap-4 uppercase tracking-wider">
+              <span>{t('hero.cta')}</span>
+              <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform rtl:rotate-180" />
+            </Link>
+            <Link to="/about" className="font-black text-lg text-gray-500 hover:text-black transition-colors uppercase tracking-wider flex items-center gap-2 hover:gap-4">
+              {t('nav.about')} <ArrowRight className="w-5 h-5 transition-transform" />
             </Link>
           </div>
         </div>

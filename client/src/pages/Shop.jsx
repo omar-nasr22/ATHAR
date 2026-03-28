@@ -61,16 +61,23 @@ const Shop = () => {
           </div>
         </aside>
 
-        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <div className="columns-1 md:columns-2 lg:columns-3 xl:columns-4 gap-8 space-y-8">
           {loading ? (
-             [1, 2, 3, 4, 5, 6].map(i => (
-              <div key={i} className="animate-pulse bg-gray-50 aspect-[3/4] rounded-2xl" />
+            Array.from({length: 12}, (_, i) => (
+              <div key={i} className="break-inside-avoid animate-pulse bg-gradient-to-br from-gray-100 to-gray-200 aspect-[2.8/4] rounded-3xl shadow-lg" />
             ))
           ) : (
-            books.map(book => <BookCard key={book._id} book={book} />)
+            books.map(book => (
+              <div key={book._id} className="break-inside-avoid mb-8">
+                <BookCard book={book} />
+              </div>
+            ))
           )}
           {!loading && books.length === 0 && (
-            <div className="col-span-full py-32 text-center text-gray-400 font-bold text-2xl uppercase">No books found in this collection.</div>
+            <div className="col-span-full row-span-full py-32 text-center text-gray-400 font-display font-bold text-3xl uppercase bg-gradient-to-r from-transparent via-white/80 to-transparent rounded-3xl p-20 backdrop-blur-sm shadow-inner">
+              <BookOpen className="w-32 h-32 mx-auto text-gray-300 mb-8 animate-spin-slow" />
+              No books found. Upload some via <Link to="/admin" className="text-primary hover:underline font-black">Admin Panel</Link>
+            </div>
           )}
         </div>
       </div>
