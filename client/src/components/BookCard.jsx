@@ -12,7 +12,7 @@ const BookCard = ({ book }) => {
     <div className="group bg-gradient-to-b from-white/90 to-white/50 backdrop-blur-xl rounded-3xl overflow-hidden shadow-2xl hover:shadow-amber/25 border border-amber/20 hover:border-amber/40 hover:shadow-[0_25px_50px_-12px_rgba(212,175,55,0.25)] hover:-translate-y-3 transition-all duration-700">
       <div className="relative aspect-[3/4] overflow-hidden">
         <img 
-          src={`http://localhost:5000/${book.coverImage}`} 
+          src={`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/${book.coverImage}`} 
           alt={title}
           className="w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 group-hover:rotate-2 group-hover:brightness-110"
         />

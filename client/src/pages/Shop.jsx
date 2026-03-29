@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import api from '../api';
 import { useTranslation } from 'react-i18next';
 import { Search, Filter } from 'lucide-react';
 import BookCard from '../components/BookCard';
@@ -18,7 +18,7 @@ const Shop = () => {
   const fetchBooks = async () => {
     setLoading(true);
     try {
-      const res = await axios.get(`http://localhost:5000/api/books?search=${searchTerm}&category=${activeCategory === 'All' ? '' : activeCategory}`);
+      const res = await api.get(`/api/books?search=${searchTerm}&category=${activeCategory === 'All' ? '' : activeCategory}`);
       setBooks(res.data);
     } catch (err) {
       console.error(err);

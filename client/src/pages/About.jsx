@@ -1,46 +1,69 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Compass, Eye, Target, Globe } from 'lucide-react';
 
 const About = () => {
   const { t } = useTranslation();
+  
   return (
-    <div className="max-w-7xl mx-auto px-4 py-32 space-y-40">
-      <header className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
-        <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-black uppercase">{t('nav.about')}</h1>
-        <p className="text-2xl text-gray-500 font-medium leading-relaxed">
-          {t('brand')} is a premier digital publishing house dedicated to creating meaningful impact through the power of curated knowledge.
+    <div className="max-w-4xl mx-auto px-6 py-24 space-y-24">
+      <section className="text-center">
+        <h1 className="text-7xl font-black bg-gradient-to-r from-black via-gray-900 to-amber-500 bg-clip-text text-transparent mb-8">
+          {t('brand')}
+        </h1>
+        <p className="text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+          {t('slogan')}
         </p>
-      </header>
+      </section>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-32 items-center">
-        <div className="space-y-12">
-          <div className="space-y-4">
-            <h3 className="text-4xl font-black flex items-center gap-4">
-              <Compass className="text-primary" size={32} /> Mission
-            </h3>
-            <p className="text-xl text-gray-500 leading-relaxed">
-              Our mission is to empower thinkers, creators, and lifelong learners by providing high-quality digital publications that challenge the status quo and inspire personal growth.
-            </p>
-          </div>
-          <div className="space-y-4">
-            <h3 className="text-4xl font-black flex items-center gap-4">
-              <Eye className="text-primary" size={32} /> Vision
-            </h3>
-            <p className="text-xl text-gray-500 leading-relaxed">
-              To become the world's most trusted source for premium digital content that bridges cultural divides and fosters a global community of intellectual excellence.
-            </p>
+      <section className="grid md:grid-cols-2 gap-20 items-center">
+        <div>
+          <h2 className="text-5xl font-bold mb-8">Our Mission</h2>
+          <p className="text-xl text-gray-600 leading-relaxed mb-8">
+            To preserve and distribute Arabic knowledge through digital publishing. Every book is carefully curated for quality and impact.
+          </p>
+          <h2 className="text-5xl font-bold mb-8">Our Vision</h2>
+          <p className="text-xl text-gray-600 leading-relaxed">
+            أن نكون المنصة الأولى للنشر الرقمي باللغة العربية، حيث تترك كل معرفة أثرها.
+          </p>
+        </div>
+        <div className="relative">
+          <div className="w-full h-96 bg-gradient-to-br from-amber-50 to-white rounded-4xl shadow-2xl p-12 flex items-center justify-center">
+            <div className="text-6xl font-black text-amber-600">أثر</div>
           </div>
         </div>
-        <div className="bg-gray-50 aspect-square rounded-[100px] overflow-hidden rotate-3 hover:rotate-0 transition-transform duration-700 relative">
-          <div className="absolute inset-0 bg-primary opacity-10 blur-3xl rounded-full translate-x-10 translate-y-10" />
-          <div className="absolute inset-0 flex items-center justify-center p-20">
-             <Globe className="w-full h-full text-black opacity-10" />
+      </section>
+
+      <section className="text-center py-32 bg-gradient-to-r from-amber-50/50 via-white to-amber-50/50 rounded-4xl backdrop-blur-sm">
+        <h2 className="text-6xl font-black mb-12 bg-gradient-to-r from-black to-amber-500 bg-clip-text text-transparent">
+          Why ATHAR?
+        </h2>
+        <div className="grid md:grid-cols-3 gap-12 max-w-5xl mx-auto">
+          <div className="space-y-4">
+            <div className="w-20 h-20 bg-amber-500 text-white rounded-4xl flex items-center justify-center mx-auto shadow-2xl">
+              📚
+            </div>
+            <h3 className="text-2xl font-bold">Premium Arabic Content</h3>
+            <p className="text-gray-600">Curated digital books by leading Arabic authors and thinkers.</p>
+          </div>
+          <div className="space-y-4">
+            <div className="w-20 h-20 bg-amber-500 text-white rounded-4xl flex items-center justify-center mx-auto shadow-2xl">
+              ⚡
+            </div>
+            <h3 className="text-2xl font-bold">Instant Delivery</h3>
+            <p className="text-gray-600">Download immediately after purchase. PDF format, lifetime access.</p>
+          </div>
+          <div className="space-y-4">
+            <div className="w-20 h-20 bg-amber-500 text-white rounded-4xl flex items-center justify-center mx-auto shadow-2xl">
+              🔒
+            </div>
+            <h3 className="text-2xl font-bold">Secure Payments</h3>
+            <p className="text-gray-600">Stripe verified, SSL protected, expiring download links.</p>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };
 
 export default About;
+

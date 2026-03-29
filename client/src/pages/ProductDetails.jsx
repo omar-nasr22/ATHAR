@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../api';
 import { useTranslation } from 'react-i18next';
 import { CheckCircle, ShieldCheck, Download, CreditCard, ArrowRight, Loader, ShoppingCart } from 'lucide-react';
 
@@ -15,7 +15,7 @@ const ProductDetails = () => {
   const [processing, setProcessing] = useState(false);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/api/books/${id}`)
+    api.get(`/api/books/${id}`)
       .then(res => setBook(res.data))
       .catch(err => console.error(err))
       .finally(() => setLoading(false));
@@ -56,7 +56,7 @@ const ProductDetails = () => {
         <div className="relative group perspective-[2500px]">
           <div className="absolute inset-0 bg-gradient-to-br from-gold/10 to-primary/5 rounded-[3rem] blur-xl -z-10 animate-pulse-glow"></div>
           <img 
-            src={`http://localhost:5000/${book.coverImage}`} 
+            src={`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/${book.coverImage}`} 
             className="w-full h-auto rounded-[3rem] shadow-2xl lg:shadow-[0_50px_100px_rgba(0,0,0,0.15)] group-hover:rotate-y-12 group-hover:rotate-x-8 group-hover:scale-[1.02] transition-all duration-[1200ms] cursor-grab active:cursor-grabbing object-cover"
             alt={title}
           />

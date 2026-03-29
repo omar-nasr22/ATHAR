@@ -1,83 +1,104 @@
 import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Mail, Phone, MapPin, Send, Loader, Twitter, Instagram, Linkedin } from 'lucide-react';
+import axios from 'axios';
 
 const Contact = () => {
-  const { t } = useTranslation();
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [loading, setLoading] = useState(false);
-  const [form, setForm] = useState({ name: '', email: '', message: '' });
+  const [sent, setSent] = useState(false);
+  const { t } = useTranslation();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setTimeout(() => {
-      alert('Message sent successfully!');
-      setForm({ name: '', email: '', message: '' });
-      setLoading(false);
-    }, 1500);
+    try {
+      await axios.post('http://localhost:5000/api/contact', formData);
+      setSent(true);
+    } catch {
+      alert('Error sending message');
+    }
+    setLoading(false);
   };
 
+  if (sent) {
+    return (
+      <div className="min-h-screen flex items-center justify-center px-4">
+        <div className="text-center max-w-md mx-auto bg-white rounded-3xl p-16 shadow-2xl">
+          <div className="w-24 h-24 bg-emerald-500 text-white rounded-full flex items-center justify-center mx-auto mb-8 shadow-2xl">
+            ✓
+          </div>
+          <h1 className="text-4xl font-black mb-4 text-emerald-600">Message Sent!</h1>
+          <p className="text-xl text-gray-600 mb-8">Thank you! We'll respond within 24 hours.</p>
+          <button 
+            onClick={() => window.location.reload()}
+            className="px-12 py-4 bg-black text-white font-bold rounded-3xl hover:bg-gray-800 transition-all"
+          >
+            Send Another
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <div className="max-w-7xl mx-auto px-4 py-32 space-y-40">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-40">
-        <div className="space-y-12">
-          <header className="space-y-6">
-            <h1 className="text-6xl md:text-8xl font-black tracking-tighter text-black uppercase leading-none">{t('nav.contact')}</h1>
-            <p className="text-2xl text-gray-500 font-medium leading-relaxed max-w-lg">
-              We're here to assist you on your journey towards knowledge and impact. Reach out anytime.
-            </p>
-          </header>
-
-          <div className="space-y-10">
-            <div className="flex gap-8 items-start">
-              <div className="p-5 bg-primary/10 rounded-2xl text-primary shrink-0"><Mail size={32} /></div>
-              <div>
-                <h3 className="text-xl font-bold mb-1">Email Support</h3>
-                <p className="text-lg text-gray-500">hello@athar.ai</p>
-              </div>
-            </div>
-            <div className="flex gap-8 items-start">
-              <div className="p-5 bg-primary/10 rounded-2xl text-primary shrink-0"><Phone size={32} /></div>
-              <div>
-                <h3 className="text-xl font-bold mb-1">Direct Line</h3>
-                <p className="text-lg text-gray-500">+1 (800) 123-ATHAR</p>
-              </div>
-            </div>
+    <div className="max-w-2xl mx-auto px-6 py-24">
+      <div className="bg-white rounded-3xl shadow-2xl p-12">
+        <h1 className="text-5xl font-black mb-12 text-center bg-gradient-to-r from-black to-amber-500 bg-clip-text text-transparent">
+          Contact Us
+        </h1>
+        
+        <form onSubmit={handleSubmit} className="space-y-8">
+          <div>
+            <label className="block text-lg font-bold mb-3">{t('contact.name')}</label>
+            <input
+              type="text"
+              required
+              className="w-full p-6 rounded-2xl border border-gray-200 focus:border-amber-400 focus:ring-4 focus:ring-amber-100 outline-none transition-all bg-gray-50 hover:bg-white"
+              placeholder={t('contact.name')}
+              value={formData.name}
+              onChange={(e) => setFormData({...formData, name: e.target.value})}
+            />
           </div>
 
-          <div className="space-y-6">
-            <h3 className="text-xl font-bold">Follow Our Journey</h3>
-            <div className="flex gap-4">
-              <a href="#" className="p-4 bg-gray-50 rounded-2xl text-gray-400 hover:text-black hover:bg-primary transition-all duration-300"><Twitter size={24} /></a>
-              <a href="#" className="p-4 bg-gray-50 rounded-2xl text-gray-400 hover:text-black hover:bg-primary transition-all duration-300"><Instagram size={24} /></a>
-              <a href="#" className="p-4 bg-gray-50 rounded-2xl text-gray-400 hover:text-black hover:bg-primary transition-all duration-300"><Linkedin size={24} /></a>
-            </div>
+          <div>
+            <label className="block text-lg font-bold mb-3">{t('contact.email')}</label>
+            <input
+              type="email"
+              required
+              className="w-full p-6 rounded-2xl border border-gray-200 focus:border-amber-400 focus:ring-4 focus:ring-amber-100 outline-none transition-all bg-gray-50 hover:bg-white"
+              placeholder={t('contact.email')}
+              value={formData.email}
+              onChange={(e) => setFormData({...formData, email: e.target.value})}
+            />
           </div>
-        </div>
 
-        <div className="bg-gray-50 p-12 md:p-20 rounded-[80px] space-y-12 relative overflow-hidden">
-          <div className="absolute top-0 right-0 p-12 opacity-5 scale-150 rotate-12"><Send size={200} /></div>
-          <form onSubmit={handleSubmit} className="space-y-8 relative z-10">
-            <div className="space-y-3">
-              <label className="text-sm font-black uppercase tracking-widest text-gray-400 pl-2">{t('contact.name')}</label>
-              <input required type="text" className="w-full p-6 bg-white border border-transparent rounded-3xl outline-none focus:border-black transition-all" value={form.name} onChange={e => setForm({...form, name: e.target.value})} />
-            </div>
-            <div className="space-y-3">
-              <label className="text-sm font-black uppercase tracking-widest text-gray-400 pl-2">{t('contact.email')}</label>
-              <input required type="email" className="w-full p-6 bg-white border border-transparent rounded-3xl outline-none focus:border-black transition-all" value={form.email} onChange={e => setForm({...form, email: e.target.value})} />
-            </div>
-            <div className="space-y-3">
-              <label className="text-sm font-black uppercase tracking-widest text-gray-400 pl-2">{t('contact.message')}</label>
-              <textarea required rows="4" className="w-full p-6 bg-white border border-transparent rounded-3xl outline-none focus:border-black transition-all resize-none" value={form.message} onChange={e => setForm({...form, message: e.target.value})} />
-            </div>
-            <button disabled={loading} className="w-full py-8 bg-black text-white text-xl font-black rounded-3xl flex items-center justify-center gap-4 hover:bg-primary transition-all shadow-2xl">
-              {loading ? <Loader className="animate-spin" /> : <><Send /> {t('contact.send')}</>}
-            </button>
-          </form>
-        </div>
+          <div>
+            <label className="block text-lg font-bold mb-3">{t('contact.message')}</label>
+            <textarea
+              required
+              rows="6"
+              className="w-full p-6 rounded-2xl border border-gray-200 focus:border-amber-400 focus:ring-4 focus:ring-amber-100 outline-none transition-all bg-gray-50 hover:bg-white resize-vertical"
+              placeholder={t('contact.message')}
+              value={formData.message}
+              onChange={(e) => setFormData({...formData, message: e.target.value})}
+            />
+          </div>
+
+          <button
+            disabled={loading}
+            className="w-full py-8 bg-gradient-to-r from-black to-amber-600 text-white font-black text-2xl rounded-3xl hover:from-amber-600 hover:to-amber-700 hover:shadow-2xl transition-all shadow-xl disabled:opacity-50"
+          >
+            {loading ? 'إرسال...' : t('contact.send')}
+          </button>
+        </form>
+      </div>
+
+      <div className="mt-32 text-center text-gray-500">
+        <p>info@athar.ai | Dubai, UAE</p>
       </div>
     </div>
   );
 };
 
 export default Contact;
+
